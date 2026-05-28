@@ -13,9 +13,10 @@ body {
 }
 
 .blade-bg {
-  background:
-    radial-gradient(ellipse at 50% 50%, #071428 0%, #040810 70%);
+  background: radial-gradient(ellipse at 50% 30%, #071428 0%, #040810 70%);
 }
+
+/* ── Logo ─────────────────────────────────────────── */
 
 .blade-logo {
   display: flex;
@@ -26,6 +27,10 @@ body {
   font-size: clamp(3.5rem, 12vw, 9rem);
   letter-spacing: 0.06em;
   line-height: 1;
+}
+
+.blade-logo-sm {
+  font-size: clamp(2rem, 6vw, 4.5rem);
 }
 
 .blade-web {
@@ -62,8 +67,10 @@ body {
   animation: flicker 8s infinite 1.5s;
 }
 
+/* ── Rule ─────────────────────────────────────────── */
+
 .blade-rule {
-  width: clamp(260px, 55vw, 700px);
+  width: clamp(260px, 70vw, 800px);
   height: 1px;
   background: linear-gradient(
     to right,
@@ -76,6 +83,8 @@ body {
   box-shadow: 0 0 8px var(--neon-blue);
 }
 
+/* ── Labels ───────────────────────────────────────── */
+
 .blade-label {
   font-family: var(--font-orbitron), monospace;
   font-size: 0.65rem;
@@ -85,6 +94,141 @@ body {
   text-shadow: 0 0 6px var(--neon-blue);
   text-transform: uppercase;
 }
+
+/* ── Nav ──────────────────────────────────────────── */
+
+.blade-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 0;
+}
+
+.blade-nav-sep {
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  color: var(--neon-dim);
+  text-shadow: 0 0 6px var(--neon-blue);
+  user-select: none;
+}
+
+.blade-nav-link {
+  font-family: var(--font-orbitron), monospace;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--neon-dim);
+  text-shadow: 0 0 6px var(--neon-blue);
+  text-decoration: none;
+  transition: color 0.2s, text-shadow 0.2s;
+}
+
+.blade-nav-link:hover {
+  color: var(--neon-bright);
+  text-shadow:
+    0 0 4px #fff,
+    0 0 12px var(--neon-bright),
+    0 0 28px var(--neon-blue);
+}
+
+.blade-nav-link.active {
+  color: #fff;
+  text-shadow:
+    0 0 4px #fff,
+    0 0 14px var(--neon-bright),
+    0 0 32px var(--neon-blue),
+    0 0 60px var(--neon-blue);
+}
+
+/* ── Body text ────────────────────────────────────── */
+
+.blade-body-text {
+  font-family: var(--font-orbitron), monospace;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  color: var(--neon-dim);
+  text-shadow: 0 0 8px var(--neon-blue);
+  line-height: 2;
+}
+
+/* ── Form ─────────────────────────────────────────── */
+
+.blade-field-label {
+  font-family: var(--font-orbitron), monospace;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  color: var(--neon-dim);
+  text-shadow: 0 0 6px var(--neon-blue);
+}
+
+.blade-input {
+  background: #989898;
+  border: 1px solid var(--neon-dim);
+  color: #0d1f3c;
+  font-family: var(--font-orbitron), monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  padding: 0.75rem 1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  width: 100%;
+}
+
+.blade-input:focus {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 8px rgba(26, 108, 199, 0.25);
+}
+
+.blade-textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.blade-btn {
+  font-family: var(--font-orbitron), monospace;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: #fff;
+  background: transparent;
+  border: 1px solid var(--neon-blue);
+  padding: 0.85rem 2rem;
+  cursor: pointer;
+  text-shadow: 0 0 6px var(--neon-bright);
+  box-shadow: 0 0 10px rgba(68, 170, 255, 0.2);
+  transition: box-shadow 0.2s, text-shadow 0.2s, background 0.2s;
+  align-self: flex-start;
+}
+
+.blade-btn:hover:not(:disabled) {
+  background: rgba(68, 170, 255, 0.08);
+  box-shadow:
+    0 0 16px var(--neon-blue),
+    0 0 32px rgba(68, 170, 255, 0.3);
+  text-shadow:
+    0 0 4px #fff,
+    0 0 12px var(--neon-bright);
+}
+
+.blade-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.blade-error {
+  font-family: var(--font-orbitron), monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  color: #f55;
+  text-shadow: 0 0 8px rgba(255, 80, 80, 0.6);
+}
+
+/* ── Animations ───────────────────────────────────── */
 
 @keyframes flicker {
   0%, 95%, 100% { opacity: 1; }
