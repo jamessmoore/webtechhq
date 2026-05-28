@@ -14,7 +14,7 @@ export default function Home() {
           I offer four core services:{" "}
           <strong>Infrastructure Auditing</strong> to surface the risks and
           inefficiencies hiding in your cloud environment,{" "}
-          <strong>Automation</strong> to eliminate the repetitive manual work
+          <strong>Automation</strong>{" "}to eliminate the repetitive manual work
           draining your team&apos;s time and energy,{" "}
           <strong>Augmentation</strong> to extend your existing engineering
           capacity without the overhead of a full-time hire, and{" "}

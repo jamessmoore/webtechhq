@@ -1,21 +1,22 @@
 "use client";
-import { useActionState } from "react";
-import { useFormStatus } from "react-dom";
-import { sendEmail, type EmailState } from "@/app/actions/sendEmail";
-
-function SubmitButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button type="submit" disabled={pending} className="blade-btn">
-      {pending ? "TRANSMITTING..." : "TRANSMIT"}
-    </button>
-  );
-}
+import { useState, FormEvent } from "react";
 
 export default function ContactForm() {
-  const [state, action] = useActionState<EmailState, FormData>(sendEmail, null);
+  const [sent, setSent] = useState(false);
+  const [fields, setFields] = useState({ name: "", email: "", message: "" });
 
-  if (state?.success) {
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    const to = atob("d2VidGVjaGhxQGdtYWlsLmNvbQ==");
+    const subject = encodeURIComponent(`[WebTechHQ] Message from ${fields.name}`);
+    const body = encodeURIComponent(
+      `Name: ${fields.name}\nEmail: ${fields.email}\n\n${fields.message}`
+    );
+    window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    setSent(true);
+  }
+
+  if (sent) {
     return (
       <p className="blade-body-text text-center">
         MESSAGE RECEIVED. I WILL BE IN TOUCH.
@@ -24,7 +25,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form action={action} className="flex flex-col gap-6 w-full max-w-lg">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full max-w-lg">
       <div className="flex flex-col gap-2">
         <label className="blade-field-label">NAME</label>
         <input
@@ -33,6 +34,8 @@ export default function ContactForm() {
           required
           className="blade-input"
           autoComplete="name"
+          value={fields.name}
+          onChange={(e) => setFields({ ...fields, name: e.target.value })}
         />
       </div>
 
@@ -44,6 +47,8 @@ export default function ContactForm() {
           required
           className="blade-input"
           autoComplete="email"
+          value={fields.email}
+          onChange={(e) => setFields({ ...fields, email: e.target.value })}
         />
       </div>
 
@@ -54,14 +59,14 @@ export default function ContactForm() {
           required
           rows={6}
           className="blade-input blade-textarea"
+          value={fields.message}
+          onChange={(e) => setFields({ ...fields, message: e.target.value })}
         />
       </div>
 
-      {state?.success === false && (
-        <p className="blade-error">{state.error}</p>
-      )}
-
-      <SubmitButton />
+      <button type="submit" className="blade-btn">
+        TRANSMIT
+      </button>
     </form>
   );
 }
